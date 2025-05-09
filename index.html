@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Learn Hebrew Letters and Kria'at Shema</title>
+
+<style>@font-face {
+  font-family: 'SBL Hebrew';
+  src: url('fonts/SBL_Hbrw.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.letter {
+  font-family: 'SBL Hebrew', serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+h1 {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* .letter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 15px;
+  max-width: 500px;
+  margin: auto;
+} */
+
+.letter {
+  font-size: 2rem;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.letter:hover {
+  background-color: #e0e0e0;
+}
+
+.letter-grid {
+  direction: rtl;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* grid-template-columns: repeat(6, 1fr); */
+  gap: 25px;
+  max-width: 75%;
+  margin: auto;
+  justify-items: center;
+}
+
+.letter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hebrew {
+  font-size: 2rem;
+  font-family: 'SBL Hebrew', serif;
+}
+
+.english {
+  font-size: 0.8rem;
+  color: #444;
+  margin-top: 5px;
+}
+
+.shema-text {
+  margin-top: 40px;
+  font-family: 'SBL Hebrew', serif;
+  font-size: 2rem;
+  line-height: 3rem;
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+  direction: rtl;
+  text-align: justify;
+}
+
+.shema-word {
+  cursor: pointer;
+  padding: 0 5px;
+  transition: background-color 0.2s;
+}
+
+.shema-word:hover {
+  background-color: #e6f0ff;
+  border-radius: 4px;
+}
+
+.shema-sentence {
+  cursor: pointer;
+  display: inline-block;
+  padding: 6px 8px;
+  transition: background-color 0.2s ease;
+  border-radius: 6px;
+}
+
+.shema-sentence:hover {
+  background-color: #e6f0ff;
+}
+
+.shema-sentence:hover,
+.shema-sentence.playing {
+  background-color: #e6f0ff;
+}
+
+/* Toggle appearance */
+.nikud-visibility-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.nikud-visibility-toggle label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.nikud-visibility-toggle input[type="checkbox"] {
+  margin-right: 8px;
+}
+#moving-dot {
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  transition: top 0.2s ease, left 0.2s ease;
+  z-index: 1000;
+  display: none;
+}
+</style></head>
+<body>
+<h1>Learn Kria'at Shema and Hebrew Letters</h1>
+<div class="nikud-visibility-toggle">
+<label>
+<input checked="" id="toggleNikud" type="checkbox"/>
+      Show Nikud (vowels)
+    </label>
+</div>
+<div class="shema-text" dir="rtl">
+<p>
+<span class="shema-sentence" data-nonnikud="שמע ישראל יהוה אלהינו יהוה אחד." data-sound="sentence_1"><span class="shema-word" data-nonnikud="שמע">שְׁמַע</span> <span class="shema-word" data-nonnikud="ישראל">יִשְׂרָאֵל</span> <span class="shema-word" data-nonnikud="יהוה">יְהוָה</span> <span class="shema-word" data-nonnikud="אלהינו">אֱלֹהֵינוּ</span> <span class="shema-word" data-nonnikud="יהוה">יְהוָה</span> <span class="shema-word" data-nonnikud="אחד.">אֶחָד.</span></span><br/>
+<span class="shema-sentence" data-nonnikud="ואהבת את יהוה אלהיך בכל לבבך ובכל נפשך ובכל מאדך." data-sound="sentence_2"><span class="shema-word" data-nonnikud="ואהבת">וְאָהַבְתָּ</span> <span class="shema-word" data-nonnikud="את">אֵת</span> <span class="shema-word" data-nonnikud="יהוה">יְהוָה</span> <span class="shema-word" data-nonnikud="אלהיך">אֱלֹהֶיךָ</span> <span class="shema-word" data-nonnikud="בכל">בְּכָל</span> <span class="shema-word" data-nonnikud="לבבך">לְבָבְךָ</span> <span class="shema-word" data-nonnikud="ובכל">וּבְכָל</span> <span class="shema-word" data-nonnikud="נפשך">נַפְשְׁךָ</span> <span class="shema-word" data-nonnikud="ובכל">וּבְכָל</span> <span class="shema-word" data-nonnikud="מאדך.">מְאֹדֶךָ.</span></span><br/>
+<span class="shema-sentence" data-nonnikud="והיו הדברים האלה אשר אנכי מצוך היום על לבבך." data-sound="sentence_3"><span class="shema-word" data-nonnikud="והיו">וְהָיוּ</span> <span class="shema-word" data-nonnikud="הדברים">הַדְּבָרִים</span> <span class="shema-word" data-nonnikud="האלה">הָאֵלֶּה</span> <span class="shema-word" data-nonnikud="אשר">אֲשֶׁר</span> <span class="shema-word" data-nonnikud="אנכי">אָנֹכִי</span> <span class="shema-word" data-nonnikud="מצוך">מְצַוְּךָ</span> <span class="shema-word" data-nonnikud="היום">הַיּוֹם</span> <span class="shema-word" data-nonnikud="על">עַל</span> <span class="shema-word" data-nonnikud="לבבך.">לְבָבֶךָ.</span></span><br/>
+<span class="shema-sentence" data-nonnikud="ושננתם לבניך ודברת בם בשבתך בביתך ובלכתך בדרך ובשכבך ובקומך." data-sound="sentence_4"><span class="shema-word" data-nonnikud="ושננתם">וְשִׁנַּנְתָּם</span> <span class="shema-word" data-nonnikud="לבניך">לְבָנֶיךָ</span> <span class="shema-word" data-nonnikud="ודברת">וְדִבַּרְתָּ</span> <span class="shema-word" data-nonnikud="בם">בָּם</span> <span class="shema-word" data-nonnikud="בשבתך">בְּשִׁבְתְּךָ</span> <span class="shema-word" data-nonnikud="בביתך">בְּבֵיתֶךָ</span> <span class="shema-word" data-nonnikud="ובלכתך">וּבְלֶכְתְּךָ</span> <span class="shema-word" data-nonnikud="בדרך">בַדֶּרֶךְ</span> <span class="shema-word" data-nonnikud="ובשכבך">וּבְשָׁכְבְּךָ</span> <span class="shema-word" data-nonnikud="ובקומך.">וּבְקוּמֶךָ.</span></span><br/>
+<span class="shema-sentence" data-nonnikud="וקשרתם לאות על ידך והיו לטטפת בין עיניך." data-sound="sentence_5"><span class="shema-word" data-nonnikud="וקשרתם">וּקְשַׁרְתָּם</span> <span class="shema-word" data-nonnikud="לאות">לְאוֹת</span> <span class="shema-word" data-nonnikud="על">עַל</span> <span class="shema-word" data-nonnikud="ידך">יָדֶךָ</span> <span class="shema-word" data-nonnikud="והיו">וְהָיוּ</span> <span class="shema-word" data-nonnikud="לטטפת">לְטֹטָפֹת</span> <span class="shema-word" data-nonnikud="בין">בֵּין</span> <span class="shema-word" data-nonnikud="עיניך.">עֵינֶיךָ.</span></span><br/>
+<span class="shema-sentence" data-nonnikud="וכתבתם על מזוזת ביתך ובשעריך." data-sound="sentence_6"><span class="shema-word" data-nonnikud="וכתבתם">וּכְתַבְתָּם</span> <span class="shema-word" data-nonnikud="על">עַל</span> <span class="shema-word" data-nonnikud="מזוזת">מְזוּזֹת</span> <span class="shema-word" data-nonnikud="ביתך">בֵּיתֶךָ</span> <span class="shema-word" data-nonnikud="ובשעריך.">וּבִשְׁעָרֶיךָ.</span></span><br/>
+</p>
+</div>
+<div class="letter-grid" dir="rtl">
+<button class="letter" data-sound="alef"><div class="hebrew">א</div><div class="english">Alef</div></button>
+<button class="letter" data-sound="bet"><div class="hebrew">ב</div><div class="english">Bet</div></button>
+<button class="letter" data-sound="gimel"><div class="hebrew">ג</div><div class="english">Gimel</div></button>
+<button class="letter" data-sound="dalet"><div class="hebrew">ד</div><div class="english">Dalet</div></button>
+<button class="letter" data-sound="he"><div class="hebrew">ה</div><div class="english">He</div></button>
+<button class="letter" data-sound="vav"><div class="hebrew">ו</div><div class="english">Vav</div></button>
+<button class="letter" data-sound="zayin"><div class="hebrew">ז</div><div class="english">Zayin</div></button>
+<button class="letter" data-sound="chet"><div class="hebrew">ח</div><div class="english">Chet</div></button>
+<button class="letter" data-sound="tet"><div class="hebrew">ט</div><div class="english">Tet</div></button>
+<button class="letter" data-sound="yod"><div class="hebrew">י</div><div class="english">Yod</div></button>
+<button class="letter" data-sound="kaf"><div class="hebrew">כ</div><div class="english">Kaf</div></button>
+<button class="letter" data-sound="final_kaf"><div class="hebrew">ך</div><div class="english">Final Kaf</div></button>
+<button class="letter" data-sound="lamed"><div class="hebrew">ל</div><div class="english">Lamed</div></button>
+<button class="letter" data-sound="mem"><div class="hebrew">מ</div><div class="english">Mem</div></button>
+<button class="letter" data-sound="final_mem"><div class="hebrew">ם</div><div class="english">Final Mem</div></button>
+<button class="letter" data-sound="nun"><div class="hebrew">נ</div><div class="english">Nun</div></button>
+<button class="letter" data-sound="final_nun"><div class="hebrew">ן</div><div class="english">Final Nun</div></button>
+<button class="letter" data-sound="samekh"><div class="hebrew">ס</div><div class="english">Samekh</div></button>
+<button class="letter" data-sound="ayin"><div class="hebrew">ע</div><div class="english">Ayin</div></button>
+<button class="letter" data-sound="pe"><div class="hebrew">פ</div><div class="english">Pe</div></button>
+<button class="letter" data-sound="final_pe"><div class="hebrew">ף</div><div class="english">Final Pe</div></button>
+<button class="letter" data-sound="tsadi"><div class="hebrew">צ</div><div class="english">Tsadi</div></button>
+<button class="letter" data-sound="final_tsadi"><div class="hebrew">ץ</div><div class="english">Final Tsadi</div></button>
+<button class="letter" data-sound="qof"><div class="hebrew">ק</div><div class="english">Qof</div></button>
+<button class="letter" data-sound="resh"><div class="hebrew">ר</div><div class="english">Resh</div></button>
+<button class="letter" data-sound="shin"><div class="hebrew">ש</div><div class="english">Shin</div></button>
+<button class="letter" data-sound="tav"><div class="hebrew">ת</div><div class="english">Tav</div></button>
+</div>
+
+<div id="moving-dot"></div><script>
+// Store original word text
+document.querySelectorAll('.shema-word').forEach(span => {
+  span.dataset.originalText = span.textContent.trim();
+});
+
+const toggleNikudCheckbox = document.getElementById('toggleNikud');
+const dot = document.getElementById('moving-dot');
+let currentAudio = null;
+
+toggleNikudCheckbox.addEventListener('change', (e) => {
+  const showNikud = e.target.checked;
+
+  document.querySelectorAll('.shema-word').forEach(word => {
+    if (showNikud) {
+      word.textContent = word.dataset.originalText || word.textContent;
+    } else {
+      word.textContent = word.dataset.nonnikud;
+    }
+  });
+});
+
+function playSound(soundName) {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  currentAudio = new Audio(`sounds/${soundName}.m4a`);
+  currentAudio.play();
+}
+
+document.querySelectorAll('.letter').forEach(button => {
+  button.addEventListener('click', () => {
+    const soundName = button.getAttribute('data-sound');
+    playSound(soundName);
+  });
+});
+
+document.querySelectorAll('.shema-word').forEach(span => {
+  span.addEventListener('click', () => {
+    const soundName = span.getAttribute('data-sound');
+    if (soundName) playSound(soundName);
+  });
+});
+
+document.querySelectorAll('.shema-sentence').forEach(sentence => {
+  sentence.addEventListener('click', () => {
+    const soundName = sentence.getAttribute('data-sound');
+    const words = sentence.querySelectorAll('.shema-word');
+
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      document.querySelectorAll('.shema-sentence.playing').forEach(el => el.classList.remove('playing'));
+      dot.style.display = 'none';
+    }
+
+    currentAudio = new Audio(`sounds/${soundName}.m4a`);
+    sentence.classList.add('playing');
+
+    currentAudio.addEventListener('loadedmetadata', () => {
+      const duration = currentAudio.duration;
+      const interval = duration / words.length;
+
+      dot.style.display = 'block';
+
+      words.forEach((word, i) => {
+        setTimeout(() => {
+          const rect = word.getBoundingClientRect();
+          dot.style.left = `${rect.left + rect.width / 2}px`;
+          dot.style.top = `${rect.top + rect.height / 2 + window.scrollY - 30}px`;
+        }, i * interval * 1000);
+      });
+
+      setTimeout(() => {
+        dot.style.display = 'none';
+        sentence.classList.remove('playing');
+      }, duration * 1000);
+    });
+
+    currentAudio.play();
+  });
+});
+</script></body>
+</html>
